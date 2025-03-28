@@ -17,6 +17,13 @@ vim.api.nvim_create_user_command("MimirContextAdd", function()
   M.context.add_current_buffer()
 end, {})
 
+-- List all context files in a floating window
+vim.api.nvim_create_user_command("MimirContextList", function()
+  local list = M.context.list_context_files()
+  M.ui.open_window()
+  M.ui.set_content("Context Files:\n\n" .. list)
+end, {})
+
 -- In visual mode, send selected code to Claude for refactoring
 vim.api.nvim_create_user_command("MimirRefactor", function()
   M.prompt.refactor_selection()

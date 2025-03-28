@@ -20,5 +20,17 @@ function M.get_context()
   return table.concat(context, "\n\n")
 end
 
+-- New function to list the file paths registered as context.
+function M.list_context_files()
+  local files = {}
+  for file, _ in pairs(M.context_files) do
+    table.insert(files, file)
+  end
+  if next(files) == nil then
+    return "No context files added."
+  end
+  return table.concat(files, "\n")
+end
+
 return M
 
